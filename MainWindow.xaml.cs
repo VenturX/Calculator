@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Windows.Controls;
 
 namespace MaterialCalculator
 {
@@ -18,8 +19,10 @@ namespace MaterialCalculator
 
         private void Number_Click(object sender, RoutedEventArgs e)
         {
-            var button = sender as Button;
-            string number = button?.Content.ToString() ?? "";
+            if (sender is not Button button)
+                return;
+                
+            string number = button.Content?.ToString() ?? "";
 
             if (operatorPressed)
             {
@@ -56,8 +59,10 @@ namespace MaterialCalculator
 
         private void Operator_Click(object sender, RoutedEventArgs e)
         {
-            var button = sender as Button;
-            string newOperator = button?.Content.ToString() ?? "";
+            if (sender is not Button button)
+                return;
+                
+            string newOperator = button.Content?.ToString() ?? "";
 
             if (!string.IsNullOrEmpty(operand1) && !operatorPressed && currentOperator != "")
             {
